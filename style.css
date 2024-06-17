@@ -1,0 +1,122 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: radial-gradient(darkslategray, transparent);
+}
+
+img {
+  width: 100%;
+  height: 100%;
+
+  object-position: center;
+}
+
+.center {
+  position: relative;
+  width: 250px;
+  height: 180px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  z-index: 200;
+
+  .frontal {
+    border-top: 8px solid red;
+    z-index: 489;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    column-gap: 2rem;
+    transition: .8s;
+    transform-origin: top;
+    position: absolute;
+
+
+    * {
+      pointer-events: none;
+      font-size: 1.2rem;
+      color: #222;
+      font-family: arial;
+      font-weight: 800;
+      text-shadow: 0 1px 2px #0003,
+        0 2px 2px #0003,
+        0 3px 2px #0003,
+        0 4px 2px #0003;
+    }
+
+    .frontal-top {
+      position: relative;
+      bottom: 2.2rem;
+
+      span {
+        display: inline-block;
+        transform: translateY(calc(-10px * var(--d)));
+      }
+    }
+
+    .frontal-bottom {
+      position: absolute;
+      right: .5rem;
+      bottom: .5rem;
+    }
+  }
+
+  .mes {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top;
+    transition: .8s;
+    z-index: var(--z);
+    transform: rotateX(0deg);
+    transform-style: preserve-3d;
+
+
+    img {
+      pointer-events: none;
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-size: cover;
+      transform: rotate(180deg) rotateY(180deg);
+      backface-visibility: hidden;
+    }
+  }
+
+  .mes:nth-child(odd) {
+    &::before {
+      background-image: url('back1.avif');
+    }
+  }
+
+  .mes:nth-child(even) {
+    &::before {
+      background-image: url('back2.avif');
+    }
+  }
+
+
+  .rotar {
+    transform: rotateX(270deg);
+  }
+}
